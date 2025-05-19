@@ -1,0 +1,9 @@
+tr.recipe-row:hover {
+  background-color: aquamarine;
+  cursor: pointer;
+}
+
+.empty-star {
+  color: #ccc;
+  font-size: 1.1em;
+}
