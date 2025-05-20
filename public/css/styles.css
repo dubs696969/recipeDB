@@ -1,7 +1,124 @@
-tr.recipe-row:hover {
-  background-color: aquamarine;
-  cursor: pointer;
+:root {
+  /* colors */
+  --color-bg1: #ffffff;
+  --color-bg2: #ffa500;
+  --color-primary: #1d2f6f;
+  --color-secondary: #7b7554;
+  --color-tertiary: #0000ff;
+
+  /* fonts */
+  --font-primary: 'Lato', sans-serif;
+  --font-display: 'Abril Fatface', serif;
+  --font-accent: 'Offside', sans-serif;
 }
+
+html {
+  font-size: 2vw;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-image: linear-gradient(
+    to right bottom,
+    var(--color-bg1),
+    60%,
+    var(--color-bg2)
+  );
+  background-repeat: no-repeat;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: 2rem;
+}
+h1 {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+  font-size: 4rem;
+  text-shadow: 0.2rem 0.2rem 1rem var(--color-secondary);
+  /* padding: 2rem; */
+}
+
+p {
+  font-family: var(--font-primary);
+  font-size: 2rem;
+}
+
+button {
+  background-color: var(--color-primary);
+  box-shadow: 0.5rem 0.5rem 1.1rem 0.2rem var(--color-secondary);
+  color: white;
+  padding: 0.75rem 1.2rem;
+  text-align: center;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  border: none;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  transition: ease-in-out 0.5s;
+}
+
+button:hover {
+  transform: translateY(-0.2rem);
+  box-shadow: .75rem .75rem 1.6rem 0.4rem var(--color-secondary);
+  scale: 110%;
+  background-color: var(--color-tertiary);
+}
+
+table{
+  /* border-collapse: collapse; */
+  border-spacing: 0 1.5rem;
+  width:90%;
+  background-color: rgba(128, 128, 128, 0.1);
+  border-radius: 20px;
+  box-shadow: 0.5rem 0.5rem 1.1rem 0.2rem var(--color-secondary);
+  padding: 1rem;
+}
+tr.recipe-row {
+  cursor: pointer;
+  display: table-row; 
+  box-sizing: border-box; 
+
+}
+
+tr.recipe-row td {
+  background-color: var(--color-primary);
+  color: white;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  border: none;}
+
+tr.recipe-row:hover td{
+  background-color: blue; 
+}
+
+tr.recipe-row td:first-child {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+tr.recipe-row td:last-child {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+td{ 
+  border: none;
+  padding: .5rem;
+  }
+
+
+
 
 .empty-star {
   color: #ccc;

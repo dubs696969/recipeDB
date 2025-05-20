@@ -1,51 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/styles.css">
-    <title>My Recipes</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/styles.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="/images/recipes_icon.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Offside&display=swap"
+      rel="stylesheet"
+    />
 
-<body>
+    <title>My Recipes</title>
+  </head>
+
+  <body>
     <div>
-            <h1>My Recipes</h1>
+      <h1>My Recipes</h1>
     </div>
     <div id="div-new-recipe">
-        <button type="button" id="btn-new-recipe">✏️ New Recipe</button>
-        <p >Click a recipe to edit or delete</p>
-    </div>
-    <div id="new-recipe" style="display: none">
-        <form id="frm-new-recipe">
-            <label for="name">Name</label>
-            <input type="text" id="name" placeholder="Recipe Name" required><br>
-            <label for="description">Description</label>
-            <input type="text" id="description" placeholder="Description" ><br>
-            <label for="ingredients">Ingredients</label>
-            <textarea id="ingredients" placeholder="Ingredients" rows="10"></textarea><br>
-            <label for="instructions">Instructions</label>
-            <textarea id="instructions" placeholder="Instructions" rows="10"></textarea><br>
-            <label for="prep_time">Preparation time (minutes)</label>
-            <input type="range" id="prep_time" max="120" step="5" value="0">
-            <span id="new-prep-value">0 minutes</span><br>
-            <label for="cook_time">Cooking time (minutes)</label>
-            <input type="range" id="cook_time" max="960" step="5" value="0">
-            <span id="new-cook-value">0 minutes</span><br>
-            <label for="cuisine_type">Cuisine</label>
-            <input type="text" id="cuisine_type" placeholder="Cuisine Type"><br>
-            <label for="rating">Rating</label>
-            <input type="range" id="rating" min="0" max="5" value="0">
-            <span id="new-rating-value" class="empty-star">☆☆☆☆☆</span><br>
-            <button type="submit">💾 Save Changes</button>
-            <button type="button" id="btn-cancel">❌ Cancel</button>
-        </form>
+      <button
+        type="button"
+        id="btn-new-recipe"
+      >
+        ✏️  New Recipe
+      </button>
+      </div>
+    <div
+      id="new-recipe"
+      style="display: none"
+    >
+      <form id="frm-new-recipe">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Recipe Name"
+          required
+        /><br />
+        <label for="description">Description</label>
+        <input
+          type="text"
+          id="description"
+          placeholder="Description"
+        /><br />
+        <label for="ingredients">Ingredients</label>
+        <textarea
+          id="ingredients"
+          placeholder="Ingredients"
+          rows="10"
+        ></textarea
+        ><br />
+        <label for="instructions">Instructions</label>
+        <textarea
+          id="instructions"
+          placeholder="Instructions"
+          rows="10"
+        ></textarea
+        ><br />
+        <label for="prep_time">Preparation time (minutes)</label>
+        <input
+          type="range"
+          id="prep_time"
+          max="120"
+          step="5"
+          value="0"
+        />
+        <span id="new-prep-value">0 minutes</span><br />
+        <label for="cook_time">Cooking time (minutes)</label>
+        <input
+          type="range"
+          id="cook_time"
+          max="960"
+          step="5"
+          value="0"
+        />
+        <span id="new-cook-value">0 minutes</span><br />
+        <label for="cuisine_type">Cuisine</label>
+        <input
+          type="text"
+          id="cuisine_type"
+          placeholder="Cuisine Type"
+        /><br />
+        <label for="rating">Rating</label>
+        <input
+          type="range"
+          id="rating"
+          min="0"
+          max="5"
+          value="0"
+        />
+        <span
+          id="new-rating-value"
+          class="empty-star"
+          >☆☆☆☆☆</span
+        ><br />
+        <button type="submit">💾 Save Changes</button>
+        <button
+          type="button"
+          id="btn-cancel"
+        >
+          ❌ Cancel
+        </button>
+      </form>
     </div>
     <div id="recipe-output">
-        <p>Nothing to see here<p>
     </div>
-
-
-
+    <p>Click a recipe to edit or delete</p>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
