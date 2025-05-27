@@ -16,7 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const cookDisplay = document.getElementById('new-cook-value');
   const divNewRecipe = document.getElementById('div-new-recipe');
 
-
+  // Set rating display using function to avoid formatting issues
+  ratingDisplay.innerHTML = getStarRating(ratingInput.value);
+  
   // rating, times display event listener
   ratingInput.addEventListener('input', () => {
     ratingDisplay.innerHTML= getStarRating(ratingInput.value);
@@ -31,26 +33,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // event listeners to see when new recipe clicked
   btnNewRecipe.addEventListener('click', () => {
-    newRecipeDiv.style.display = 'block';
+    newRecipeDiv.style.display = 'flex';
     recipeOutput.innerHTML = '';
     btnNewRecipe.style.display = 'none';
   });
 
   //Event listener for cancel add new
-  btnCancel.addEventListener('click',(e) =>{
+  btnCancel.addEventListener('click',(e) => {
     e.preventDefault();
     if (confirm('Are you sure you want to discard changes?')) {
-      newRecipeDiv.style.display = 'none';
-      btnNewRecipe.style.display = 'block';
-      newRecipeForm.reset();
-      loadInitialRecipes();
+        newRecipeForm.reset();
+        newRecipeDiv.style.display = 'none';
+        btnNewRecipe.style.display = 'block';  // Show button first
+        loadInitialRecipes();  // Then load recipes
     }
-  });
+});
 
   // Event listener for new recipe submission
   newRecipeForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); // stop normal submit behaviour
-
+    e.preventDefault();
+    
     // get values from newRecipeForm
     const newRecipe = {
       name: document.getElementById('name').value,
@@ -64,31 +66,34 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     try {
-      const response = await fetch('/api/recipes', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newRecipe),
-      });
+        const response = await fetch('/api/recipes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newRecipe),
+        });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to add recipe');
-      }
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to add recipe');
+        }
 
-      // clear form and hide
-      newRecipeForm.reset();
-      newRecipeForm.style.display = 'none';
-
-      // show updated recipes
-      const recipes = await fetchRecipes();
-      showAllRecipes(recipes);
+        // Hide form first
+        newRecipeDiv.style.display = 'none';
+        
+        // Then show recipes and button
+        const recipes = await fetchRecipes();
+        await showAllRecipes(recipes);
+        btnNewRecipe.style.display = 'block';
+        
+        // Finally reset form
+        newRecipeForm.reset();
     } catch (error) {
-      console.error('Error adding recipe:', error);
-      showError(`Failed to add recipe: ${error.message}`);
+        console.error('Error adding recipe:', error);
+        showError(`Failed to add recipe: ${error.message}`);
     }
-  });
+});
 
   async function loadInitialRecipes() {
     try {
@@ -118,8 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Remove visibility management from showAllRecipes
   function showAllRecipes(recipes) {
-    divNewRecipe.style.display='block';
+    // Remove this line
+    // divNewRecipe.style.display='block';  
+
     if (!recipes || recipes.length === 0) {
       recipeOutput.innerHTML = '<p>No recipes found<p>';
       return;
@@ -143,7 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             <td>${recipe.name || 'n/a'}</td>
                             <td>${recipe.description || 'n/a'}</td>
                             <td>${recipe.cuisine_type || 'n/a'}</td>
-                            <td>${recipe.rating || 'n/a'}</td>
+                            <td id="rating">${getStarRating(recipe.rating)}</td>
+                            <td class="edit">✏️</td>
+                            <td>
                         </tr>
                     `
                       )
@@ -371,8 +381,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function getStarRating (starValue) {
-    const filledStars = '⭐'.repeat(starValue);
-    const emptyStars = '<span class="empty-star">☆</span>'.repeat(5 - starValue);
+    const filledStars = '<span class="filled-stars">&#9733</span>'.repeat(starValue);
+    const emptyStars = '<span class="empty-stars">&#9734</span>'.repeat(5 - starValue);
     return filledStars + emptyStars
   }
 
